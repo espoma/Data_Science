@@ -1,0 +1,20 @@
+#!/bin/sh
+#PBS -N BB_10_t0
+
+#PBS -l walltime=0:30:00
+#PBS -l select=1:ncpus=1:mem=4gb
+#PBS -J 1-10:1
+module load gsl
+
+#pwd
+
+for ((i=$PBS_ARRAY_INDEX; i<$PBS_ARRAY_INDEX+1; i++))
+do
+
+        cd $PBS_O_WORKDIR
+        #pwd
+        ./bb_smc_10 0 $i 10
+
+done
+
+#sleep 10
